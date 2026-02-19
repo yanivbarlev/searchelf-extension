@@ -1,0 +1,12 @@
+{
+  "name": "SearchElf - Smart Tips",
+  "description": "AI-powered tips, shortcuts & hidden features for every website you visit.",
+  "version": "1.0.0",
+  "primaryColor": "#6C63FF",
+  "accentColor": "#FF6584",
+  "widgetLabel": "Tips",
+  "widgetEmoji": "\uD83D\uDCA1",
+  "icon": "imgs/icon",
+  "groqApiKey": "YOUR_GROQ_API_KEY_HERE",
+  "groqModel": "llama-3.3-70b-versatile"
+}
