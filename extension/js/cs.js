@@ -20,6 +20,17 @@
   const CACHE_VERSION = "v3";
   const CACHE_KEY = `tips_${CACHE_VERSION}_${hostname}`;
   const CACHE_TTL = 24 * 60 * 60 * 1000; // 24h
+  const DISMISS_KEY = "searchelf_dismissed";
+  const DISMISS_TTL = 48 * 60 * 60 * 1000; // 48h
+
+  // Check if widget was dismissed
+  const dismissCheck = await new Promise((resolve) => {
+    chrome.storage.local.get([DISMISS_KEY], (result) => {
+      const dismissed = result[DISMISS_KEY];
+      resolve(dismissed && Date.now() - dismissed < DISMISS_TTL);
+    });
+  });
+  if (dismissCheck) return;
 
   // --- Generic Fallback Tips (50) ---
   const GENERIC_TIPS = [
@@ -91,10 +102,13 @@
   root.id = "searchelf-widget-root";
   root.innerHTML = `
     <div id="searchelf-widget" class="searchelf-collapsed">
-      <button id="searchelf-toggle" aria-label="Open tips">
-        <span class="searchelf-emoji">${config.widgetEmoji || "\uD83D\uDCA1"}</span>
-        <span class="searchelf-label">${config.widgetLabel || "Tips"}</span>
-      </button>
+      <div id="searchelf-toggle-wrap">
+        <button id="searchelf-toggle" aria-label="Open tips">
+          <span class="searchelf-emoji">${config.widgetEmoji || "\uD83D\uDCA1"}</span>
+          <span class="searchelf-label">${config.widgetLabel || "Tips"}</span>
+        </button>
+        <button id="searchelf-dismiss" aria-label="Dismiss widget">&times;</button>
+      </div>
       <div id="searchelf-panel">
         <div class="searchelf-panel-header">
           <span class="searchelf-panel-title">\u2728 Tips for ${hostname}</span>
@@ -158,8 +172,8 @@
   function renderTip() {
     if (!tips.length) return;
     const tip = tips[currentIdx];
-    const label = isGeneric ? " (generic)" : "";
-    tipNumber.textContent = `\uD83D\uDCA1 Tip ${currentIdx + 1} of ${tips.length}${label}`;
+    const emoji = isGeneric ? "\uD83D\uDCCC" : "\uD83D\uDCA1";
+    tipNumber.textContent = `${emoji} Tip ${currentIdx + 1} of ${tips.length}`;
     tipTitle.textContent = tip.title;
     tipDesc.textContent = tip.description;
     counter.textContent = `${currentIdx + 1} / ${tips.length}`;
@@ -209,11 +223,6 @@
 
   // --- Groq API ---
   async function fetchTips() {
-    show(loading);
-    hide(tipCard);
-    hide(nav);
-    hide(errorDiv);
-
     // Check cache first
     const cached = await getCached();
     if (cached && Array.isArray(cached) && cached.length > 0) {
@@ -225,6 +234,12 @@
       return;
     }
 
+    // Show generic tips immediately while API loads
+    isGeneric = true;
+    tips = getRandomGenericTips();
+    currentIdx = 0;
+    renderTip();
+
     // Decode obfuscated API key
     let apiKey;
     try {
@@ -233,7 +248,7 @@
       apiKey = null;
     }
     if (!apiKey) {
-      showGenericFallback("No API key configured");
+      console.error("[CS] No API key configured — staying on generic tips");
       return;
     }
 
@@ -306,12 +321,22 @@ NEVER invent keyboard shortcuts, hidden menus, or secret features. If the site i
       renderTip();
       console.log("[CS] Tips fetched from Groq for", hostname);
     } catch (err) {
-      console.error("[CS] Groq API error:", err);
-      showGenericFallback(err.message);
+      console.error("[CS] Groq API error — keeping generic tips:", err);
+      // Generic tips already showing, nothing else to do
     }
   }
 
+  // --- Element refs (dismiss) ---
+  const dismissBtn = $("searchelf-dismiss");
+
   // --- Event Listeners ---
+  dismissBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    chrome.storage.local.set({ [DISMISS_KEY]: Date.now() });
+    root.remove();
+    console.log("[CS] Widget dismissed for 48 hours");
+  });
+
   toggle.addEventListener("click", () => {
     widget.classList.remove("searchelf-collapsed");
     widget.classList.add("searchelf-expanded");
