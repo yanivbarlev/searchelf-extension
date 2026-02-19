@@ -7,6 +7,6 @@
   "widgetLabel": "Tips",
   "widgetEmoji": "\uD83D\uDCA1",
   "icon": "imgs/icon",
-  "groqApiKey": "YOUR_GROQ_API_KEY_HERE",
-  "groqModel": "llama-3.3-70b-versatile"
+  "groqApiKeyEncoded": "aFE5cEY4akNFTzMzNzlJRVYxejJtZ0gyWUYzYnlkR1dIdjYwR2RneEN2R2d6Z21rOGZoS19rc2c=",
+  "groqModel": "groq/compound-mini"
 }
