@@ -20,14 +20,19 @@
   const CACHE_VERSION = "v3";
   const CACHE_KEY = `tips_${CACHE_VERSION}_${hostname}`;
   const CACHE_TTL = 24 * 60 * 60 * 1000; // 24h
-  const DISMISS_KEY = "searchelf_dismissed";
+  const DISMISS_KEY = "searchelf_dismissed_v2";
   const DISMISS_TTL = 48 * 60 * 60 * 1000; // 48h
 
   // Check if widget was dismissed
   const dismissCheck = await new Promise((resolve) => {
     chrome.storage.local.get([DISMISS_KEY], (result) => {
       const dismissed = result[DISMISS_KEY];
-      resolve(dismissed && Date.now() - dismissed < DISMISS_TTL);
+      if (dismissed && Date.now() - dismissed < DISMISS_TTL) {
+        console.log("[CS] Widget dismissed, skipping injection");
+        resolve(true);
+      } else {
+        resolve(false);
+      }
     });
   });
   if (dismissCheck) return;
@@ -103,11 +108,11 @@
   root.innerHTML = `
     <div id="searchelf-widget" class="searchelf-collapsed">
       <div id="searchelf-toggle-wrap">
+        <button id="searchelf-dismiss" aria-label="Dismiss widget">x</button>
         <button id="searchelf-toggle" aria-label="Open tips">
           <span class="searchelf-emoji">${config.widgetEmoji || "\uD83D\uDCA1"}</span>
           <span class="searchelf-label">${config.widgetLabel || "Tips"}</span>
         </button>
-        <button id="searchelf-dismiss" aria-label="Dismiss widget">&times;</button>
       </div>
       <div id="searchelf-panel">
         <div class="searchelf-panel-header">

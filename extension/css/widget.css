@@ -1,6 +1,8 @@
 /* SearchElf Widget Styles */
 #searchelf-widget-root {
   all: initial;
+  direction: ltr;
+  text-align: left;
   position: fixed;
   bottom: 24px;
   right: 24px;
@@ -14,13 +16,14 @@
 #searchelf-widget {
   --searchelf-primary: #6C63FF;
   --searchelf-accent: #FF6584;
+  direction: ltr !important;
+  text-align: left !important;
 }
 
 /* --- Toggle Wrap --- */
 #searchelf-toggle-wrap {
-  display: flex;
-  align-items: center;
   position: relative;
+  display: inline-block;
 }
 
 /* --- Toggle Button --- */
@@ -28,9 +31,9 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  padding: 10px 18px 10px 18px;
+  padding: 10px 18px;
   border: none;
-  border-radius: 50px 0 0 50px;
+  border-radius: 50px;
   background: var(--searchelf-primary);
   color: #fff;
   font-size: 14px;
@@ -40,39 +43,30 @@
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
-#searchelf-dismiss {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 10px;
-  border: none;
-  border-radius: 0 50px 50px 0;
-  background: var(--searchelf-primary);
-  color: #fff;
-  font-size: 16px;
-  cursor: pointer;
-  opacity: 0.7;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
-  border-left: 1px solid rgba(255, 255, 255, 0.25);
-}
-
-#searchelf-dismiss:hover {
-  opacity: 1;
-}
-
-#searchelf-toggle-wrap:hover #searchelf-toggle {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
-}
-
-#searchelf-toggle-wrap:hover #searchelf-dismiss {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
-}
-
 #searchelf-toggle:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+#searchelf-dismiss {
+  position: absolute;
+  top: 50%;
+  left: 8px;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 11px;
+  font-weight: 400;
+  cursor: pointer;
+  padding: 2px;
+  line-height: 1;
+  z-index: 1;
+  transition: color 0.2s;
+}
+
+#searchelf-dismiss:hover {
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .searchelf-emoji {
