@@ -5,7 +5,10 @@ Generate a Chrome MV3 extension that shows a floating tips widget on ONE specifi
 
 ## Before You Start
 - Read `lessons/LOG.md` for issues encountered in previous builds — avoid repeating mistakes
+- Check `PORTFOLIO.md` — new extension must target a different category/tool/pattern than existing ones
+- After building, add the extension to `PORTFOLIO.md`
 - After submitting to Chrome Web Store, log lessons per `lessons/PROCESS.md`
+- **After fixing ANY bug** (build, store upload, runtime): immediately update `lessons/LOG.md` with the issue and fix, then apply the lesson to the relevant recipe file. Don't wait for submission or for the user to remind you.
 
 ## File Structure
 ```
@@ -174,6 +177,23 @@ Create two HTML files in `marketing/` for Chrome Web Store screenshots.
 
 Both slides use `body { width: 1280px; height: 800px; overflow: hidden; }` so they render at exact Chrome Web Store dimensions.
 
+**Render slides to PNG** — after creating the HTML slides, use Puppeteer to capture 1280x800 PNGs:
+```js
+// Run from project root (where puppeteer is installed)
+const puppeteer = require('puppeteer');
+(async () => {
+  const browser = await puppeteer.launch({ headless: 'new' });
+  const page = await browser.newPage();
+  await page.setViewport({ width: 1280, height: 800 });
+  await page.goto('file:///ABSOLUTE_PATH/marketing/slide1.html', { waitUntil: 'networkidle0' });
+  await page.screenshot({ path: 'marketing/slide1.png' });
+  await page.goto('file:///ABSOLUTE_PATH/marketing/slide2.html', { waitUntil: 'networkidle0' });
+  await page.screenshot({ path: 'marketing/slide2.png' });
+  await browser.close();
+})();
+```
+This produces pixel-perfect 1280x800 PNGs ready for Chrome Web Store upload. Install puppeteer once at the repo root with `npm install puppeteer` if not already present.
+
 ## Step 8: SVG Icons
 
 Create SVG icons at 16/48/128px with a themed design:
@@ -205,6 +225,10 @@ Generate a `STORE-LISTING.md` file with all Chrome Web Store submission fields:
 ## Step 10: Create Zip
 
 Create a zip file at `output/{extension-id}.zip` containing only the extension files (exclude `marketing/` folder and `.svg` source files). Use PowerShell on Windows or `zip` on Mac/Linux.
+
+**CRITICAL**: When using PowerShell `Compress-Archive`, include `imgs` as a whole directory — NOT individual file paths like `imgs/icon-16.png`. Individual paths lose directory structure and icons won't be found at `imgs/icon-*.png` in the zip.
+
+After creating the zip, **always verify** by listing its contents (e.g. `Expand-Archive` to a temp dir and list, or use `7z l`) to confirm `imgs/icon-16.png`, `imgs/icon-48.png`, `imgs/icon-128.png` exist at the correct paths.
 
 ## Verification Checklist
 - [ ] Extension loads in chrome://extensions without errors

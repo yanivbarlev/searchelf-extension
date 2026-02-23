@@ -1,0 +1,33 @@
+{
+  "manifest_version": 3,
+  "name": "Tips for Google Sheets - Tricks & Hidden Features",
+  "version": "1.0.0",
+  "description": "50+ Google Sheets tricks, hidden features & productivity tips — right inside your spreadsheet. Free & instant.",
+  "permissions": ["storage"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "imgs/icon-16.png",
+      "48": "imgs/icon-48.png",
+      "128": "imgs/icon-128.png"
+    }
+  },
+  "icons": {
+    "16": "imgs/icon-16.png",
+    "48": "imgs/icon-48.png",
+    "128": "imgs/icon-128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://docs.google.com/spreadsheets/*"],
+      "js": ["js/cs.js"],
+      "run_at": "document_end"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["config.json", "css/widget.css"],
+      "matches": ["*://docs.google.com/*"]
+    }
+  ]
+}

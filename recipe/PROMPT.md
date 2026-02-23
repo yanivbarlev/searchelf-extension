@@ -1,25 +1,41 @@
-# Prompt to Generate a Site-Specific Chrome Extension
+# Prompt — New Extension Workflow
 
-Copy and paste this to Claude, filling in the bracketed values.
+This is the master prompt for creating a new extension. It starts with keyword exploration and ends with a built, zipped, store-ready extension.
 
-**Important:** Before building, read `recipe/lessons/LOG.md` to avoid past mistakes. After submitting to Chrome Web Store, add a lessons entry per `recipe/lessons/PROCESS.md`.
+**Copy-paste this entire prompt to Claude to start a new extension.**
 
 ---
 
-Create a Chrome extension called **[EXTENSION NAME]** that shows a floating tips widget on **[SITE URL]**.
+I want to create a new site-specific tips Chrome extension.
+
+**Use the TaskCreate tool at the start to create tasks for every step below. Update task status as you go (in_progress when starting, completed when done). Do not skip any task.**
+
+## Phase 1: Keyword Exploration
+
+Before building anything, help me find the right keyword to target.
+
+1. Read `recipe/PORTFOLIO.md` to see what we've already built
+2. Read `recipe/lessons/LOG.md` for past mistakes to avoid
+3. Read `recipe/KEYWORD-RESEARCH.md` for selection criteria and evaluation workflow
+
+Then suggest 4-6 candidate keywords/extensions. For each candidate provide:
+- Target keyword and tool/site
+- Category (must be different from recent portfolio entries)
+- Keyword pattern (e.g. "{tool} tips", "{tool} shortcuts" — vary from recent entries)
+- Quick competition assessment
+- Proposed extension name
+
+Prioritize maximum diversification from the existing portfolio — different categories, different tools, different keyword patterns. We're in exploration mode casting a wide net.
+
+**Use the AskUserQuestion tool** to present the candidates and let me pick one (or suggest my own). Include a brief rationale for each option. Don't proceed until I've chosen.
+
+## Phase 2: Build the Extension
+
+Once I've picked a keyword, build the full extension:
 
 Follow the recipe in `recipe/RECIPE.md` for architecture, code templates, and bug-avoidance rules.
 
-**Site details:**
-- Hostname: `[e.g. www.minecraft.net]`
-- Match patterns: `[e.g. *://*.minecraft.net/*]`
-- Category: `[e.g. gaming, news, social media, shopping, education]`
-- Primary color: `[e.g. #4CAF50]`
-- Accent color: `[e.g. #8BC34A]`
-- Widget emoji: `[e.g. ⛏️]`
-- Widget label: `[e.g. MC Tips]`
-
-**Write 50 site-specific tips** for this site following the tip rules in `recipe/TIPS-GUIDE.md`.
+**Write 50 site-specific tips** for the chosen site following the tip rules in `recipe/TIPS-GUIDE.md`.
 
 Output the complete extension folder ready to load as unpacked in Chrome.
 
@@ -29,6 +45,12 @@ Output the complete extension folder ready to load as unpacked in Chrome.
 - `render-icons.html` canvas-based icon renderer with download buttons
 - `STORE-LISTING.md` with all Chrome Web Store fields (name, summary ≤132 chars, description, privacy disclosures, permission justifications, submission checklist)
 - Zip file at `output/{extension-id}.zip` (excluding marketing/ and .svg files)
+
+## Phase 3: Update Tracking
+
+After building:
+- Add the new extension to `recipe/PORTFOLIO.md`
+- Remind me to log lessons in `recipe/lessons/LOG.md` after I submit to Chrome Web Store
 
 ---
 

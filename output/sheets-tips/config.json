@@ -1,0 +1,10 @@
+{
+  "name": "Tips for Google Sheets",
+  "description": "50+ Google Sheets tricks, hidden features & productivity tips — right inside your spreadsheet.",
+  "version": "1.0.0",
+  "primaryColor": "#0F9D58",
+  "accentColor": "#1A73E8",
+  "widgetLabel": "Sheets Tips",
+  "widgetEmoji": "\uD83D\uDCA1",
+  "targetHostname": "docs.google.com"
+}

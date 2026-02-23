@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1280px;
+    height: 800px;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    overflow: hidden;
+    position: relative;
+    color: #fff;
+  }
+  h1 {
+    font-size: 48px;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 60px;
+  }
+  h1 span { color: #0F9D58; }
+  .features {
+    display: flex;
+    gap: 50px;
+    align-items: flex-start;
+  }
+  .feature {
+    text-align: center;
+    width: 280px;
+  }
+  .feature-icon {
+    width: 90px;
+    height: 90px;
+    border-radius: 20px;
+    background: rgba(15, 157, 88, 0.25);
+    border: 2px solid rgba(15, 157, 88, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 40px;
+  }
+  .feature h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .feature p {
+    font-size: 15px;
+    opacity: 0.7;
+    line-height: 1.5;
+  }
+  .badge {
+    position: absolute;
+    bottom: 50px;
+    background: #0F9D58;
+    color: #fff;
+    padding: 10px 28px;
+    border-radius: 50px;
+    font-size: 15px;
+    font-weight: 600;
+    box-shadow: 0 4px 14px rgba(15, 157, 88, 0.4);
+  }
+  .circle {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.06;
+    background: #0F9D58;
+  }
+  .c1 { width: 400px; height: 400px; top: -150px; left: -100px; }
+  .c2 { width: 300px; height: 300px; bottom: -100px; right: -80px; }
+</style>
+</head>
+<body>
+  <div class="circle c1"></div>
+  <div class="circle c2"></div>
+  <h1>Everything You Need to<br><span>Master Google Sheets</span></h1>
+  <div class="features">
+    <div class="feature">
+      <div class="feature-icon">&#9000;</div>
+      <h3>Keyboard Shortcuts</h3>
+      <p>Learn the shortcuts that pros use to work 3x faster in Google Sheets.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">&#128161;</div>
+      <h3>Hidden Features</h3>
+      <p>Discover powerful functions and tools most Sheets users don't know exist.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">&#9889;</div>
+      <h3>Instant Access</h3>
+      <p>Tips appear right inside Google Sheets. No searching, no tab switching.</p>
+    </div>
+  </div>
+  <div class="badge">&#128202; Free &middot; Works Instantly &middot; 50+ Tips</div>
+</body>
+</html>
