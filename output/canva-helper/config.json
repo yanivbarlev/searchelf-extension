@@ -1,0 +1,10 @@
+{
+  "name": "Tips for Canva",
+  "description": "Instantly discover useful tips, keyboard shortcuts, and hidden features while using Canva.",
+  "version": "1.0.0",
+  "primaryColor": "#7B2FF7",
+  "accentColor": "#00C4CC",
+  "widgetLabel": "Tips",
+  "widgetEmoji": "\uD83C\uDFA8",
+  "targetHostname": "www.canva.com"
+}

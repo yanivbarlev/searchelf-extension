@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  body { background: #f0f0f0; padding: 40px; font-family: sans-serif; }
+  .icon-row { display: flex; gap: 40px; align-items: end; margin-bottom: 20px; }
+  .icon-box { text-align: center; }
+  .icon-box p { margin-top: 8px; font-size: 12px; color: #666; }
+  canvas { image-rendering: pixelated; }
+</style>
+</head>
+<body>
+<h2>Extension Icons Preview</h2>
+<div class="icon-row">
+  <div class="icon-box"><canvas id="c128" width="128" height="128"></canvas><p>128px</p></div>
+  <div class="icon-box"><canvas id="c48" width="48" height="48"></canvas><p>48px</p></div>
+  <div class="icon-box"><canvas id="c16" width="16" height="16"></canvas><p>16px</p></div>
+</div>
+<p id="status">Rendering...</p>
+<script>
+function drawIcon(canvas) {
+  const s = canvas.width;
+  const ctx = canvas.getContext('2d');
+  const r = s / 2;
+
+  // Purple gradient circle
+  const grad = ctx.createLinearGradient(0, 0, s, s);
+  grad.addColorStop(0, '#8B3FF9');
+  grad.addColorStop(1, '#6B1FE7');
+  ctx.beginPath();
+  ctx.arc(r, r, r, 0, Math.PI * 2);
+  ctx.fillStyle = grad;
+  ctx.fill();
+
+  // Lightbulb
+  const scale = s / 128;
+  ctx.save();
+  ctx.translate(s * 0.28, s * 0.15);
+  ctx.scale(scale, scale);
+
+  // Bulb body (yellow)
+  ctx.fillStyle = '#FFD93D';
+  ctx.beginPath();
+  ctx.arc(28, 32, 22, Math.PI * 1.15, Math.PI * 1.85, true);
+  ctx.quadraticCurveTo(50, 22, 46, 8);
+  ctx.arc(28, 18, 18, -0.3, Math.PI + 0.3, true);
+  ctx.quadraticCurveTo(6, 22, 10, 38);
+  ctx.closePath();
+  ctx.fill();
+
+  // Simpler bulb - just ellipse
+  ctx.fillStyle = '#FFD93D';
+  ctx.beginPath();
+  ctx.ellipse(28, 26, 18, 20, 0, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Bulb base (teal)
+  ctx.fillStyle = '#00C4CC';
+  roundRect(ctx, 19, 44, 18, 10, 3);
+  ctx.fill();
+
+  // Base lines
+  ctx.strokeStyle = 'rgba(0,0,0,0.12)';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.moveTo(20, 47); ctx.lineTo(36, 47);
+  ctx.moveTo(20, 50); ctx.lineTo(36, 50);
+  ctx.stroke();
+
+  // Glow
+  ctx.fillStyle = 'rgba(255,255,255,0.35)';
+  ctx.beginPath();
+  ctx.ellipse(22, 20, 6, 8, -0.3, 0, Math.PI * 2);
+  ctx.fill();
+
+  ctx.restore();
+
+  // Sparkles
+  drawSparkle(ctx, s * 0.75, s * 0.2, s * 0.06, '#fff', 0.9);
+  drawSparkle(ctx, s * 0.18, s * 0.25, s * 0.035, '#fff', 0.6);
+  drawSparkle(ctx, s * 0.82, s * 0.55, s * 0.03, '#00C4CC', 0.7);
+}
+
+function drawSparkle(ctx, x, y, size, color, alpha) {
+  ctx.save();
+  ctx.globalAlpha = alpha;
+  ctx.fillStyle = color;
+  ctx.beginPath();
+  ctx.moveTo(x, y - size);
+  ctx.quadraticCurveTo(x + size * 0.3, y - size * 0.3, x + size, y);
+  ctx.quadraticCurveTo(x + size * 0.3, y + size * 0.3, x, y + size);
+  ctx.quadraticCurveTo(x - size * 0.3, y + size * 0.3, x - size, y);
+  ctx.quadraticCurveTo(x - size * 0.3, y - size * 0.3, x, y - size);
+  ctx.fill();
+  ctx.restore();
+}
+
+function roundRect(ctx, x, y, w, h, r) {
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.lineTo(x + w - r, y);
+  ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+  ctx.lineTo(x + w, y + h - r);
+  ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+  ctx.lineTo(x + r, y + h);
+  ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+  ctx.lineTo(x, y + r);
+  ctx.quadraticCurveTo(x, y, x + r, y);
+  ctx.closePath();
+}
+
+['c128', 'c48', 'c16'].forEach(id => drawIcon(document.getElementById(id)));
+
+// Auto-download PNGs
+function downloadCanvas(id, filename) {
+  const canvas = document.getElementById(id);
+  const link = document.createElement('a');
+  link.download = filename;
+  link.href = canvas.toDataURL('image/png');
+  link.click();
+}
+
+document.getElementById('status').textContent = 'Done! Right-click canvases to save, or click buttons below.';
+</script>
+<br>
+<button onclick="downloadCanvas('c16','icon-16.png')">Download 16px</button>
+<button onclick="downloadCanvas('c48','icon-48.png')">Download 48px</button>
+<button onclick="downloadCanvas('c128','icon-128.png')">Download 128px</button>
+</body>
+</html>
