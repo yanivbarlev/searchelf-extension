@@ -6,5 +6,6 @@ Track every extension we build or target. Check this before ideating to ensure m
 
 | # | Extension Name | Target Keyword | Category | Tool/Site | Pattern | Date | Status |
 |---|---------------|----------------|----------|-----------|---------|------|--------|
+| 3 | Tips for Pinterest - Tricks & Hidden Features | pinterest tricks | Social/Discovery | pinterest.com | {tool} tricks | 2026-02 | Built |
 | 2 | Tips for Google Sheets - Tricks & Hidden Features | google sheets tricks | Spreadsheets | docs.google.com | {tool} tricks | 2026-02 | Built |
 | 1 | Tips for Canva - Shortcuts & Hidden Features | canva tips | Design | canva.com | {tool} tips | 2025-02 | Built |

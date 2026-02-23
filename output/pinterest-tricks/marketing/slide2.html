@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 1280px;
+      height: 800px;
+      overflow: hidden;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #0f0f0f;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 80px;
+    }
+    .headline {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+    .headline h2 {
+      font-size: 42px;
+      font-weight: 800;
+      color: white;
+      margin-bottom: 12px;
+    }
+    .headline h2 span { color: #E60023; }
+    .headline p {
+      font-size: 18px;
+      color: rgba(255,255,255,0.55);
+    }
+    .cards {
+      display: flex;
+      gap: 28px;
+      margin-bottom: 48px;
+    }
+    .card {
+      background: #1a1a1a;
+      border: 1px solid #2a2a2a;
+      border-radius: 16px;
+      padding: 32px 28px;
+      width: 340px;
+      text-align: center;
+    }
+    .card-icon {
+      font-size: 40px;
+      margin-bottom: 16px;
+    }
+    .card-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 12px;
+    }
+    .card-desc {
+      font-size: 14px;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.6;
+    }
+    .bottom-badge {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+    .pill {
+      background: rgba(230,0,35,0.15);
+      border: 1px solid rgba(230,0,35,0.4);
+      color: #ff4d6a;
+      padding: 8px 20px;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div class="headline">
+    <h2>Everything You Need to Master <span>Pinterest</span></h2>
+    <p>Discover features most users never find — all in a free floating widget</p>
+  </div>
+
+  <div class="cards">
+    <div class="card">
+      <div class="card-icon">🔍</div>
+      <div class="card-title">Hidden Features</div>
+      <div class="card-desc">Discover secret boards, visual search inside pins, board sections, and other features buried deep in Pinterest's interface.</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">⚡</div>
+      <div class="card-title">Smart Shortcuts</div>
+      <div class="card-desc">Use keyboard shortcuts and browser tricks to navigate Pinterest faster — open pins in new tabs, zoom, bookmark boards instantly.</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">📌</div>
+      <div class="card-title">Instant Access</div>
+      <div class="card-desc">A floating widget appears right on pinterest.com — click it to get 5 random tips. No new tabs, no searching, no distractions.</div>
+    </div>
+  </div>
+
+  <div class="bottom-badge">
+    <span class="pill">Free</span>
+    <span class="pill">Works Instantly</span>
+    <span class="pill">50+ Tips</span>
+    <span class="pill">No Sign-up Required</span>
+  </div>
+</body>
+</html>

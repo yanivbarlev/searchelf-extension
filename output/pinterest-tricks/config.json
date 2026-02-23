@@ -1,0 +1,10 @@
+{
+  "name": "Tips for Pinterest",
+  "description": "50 Pinterest tricks, hidden features & shortcuts to save time and discover more.",
+  "version": "1.0.0",
+  "primaryColor": "#E60023",
+  "accentColor": "#AD081B",
+  "widgetLabel": "Pinterest Tips",
+  "widgetEmoji": "📌",
+  "targetHostname": "pinterest.com"
+}

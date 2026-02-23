@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Icon Renderer — Tips for Pinterest</title>
+  <style>
+    body { font-family: sans-serif; padding: 32px; background: #f5f5f5; }
+    h1 { margin-bottom: 24px; }
+    .icons { display: flex; gap: 40px; align-items: flex-end; margin-bottom: 32px; flex-wrap: wrap; }
+    .icon-wrap { text-align: center; }
+    canvas { display: block; margin: 0 auto 8px; }
+    .label { font-size: 12px; color: #666; margin-bottom: 8px; }
+    button {
+      display: block;
+      margin: 0 auto;
+      padding: 6px 14px;
+      background: #E60023;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    button:hover { background: #AD081B; }
+  </style>
+</head>
+<body>
+  <h1>📌 Tips for Pinterest — Icon Preview</h1>
+  <div class="icons">
+    <div class="icon-wrap">
+      <canvas id="c128" width="128" height="128"></canvas>
+      <div class="label">128×128</div>
+      <button onclick="download('c128','icon-128.png')">Download</button>
+    </div>
+    <div class="icon-wrap">
+      <canvas id="c48" width="48" height="48"></canvas>
+      <div class="label">48×48</div>
+      <button onclick="download('c48','icon-48.png')">Download</button>
+    </div>
+    <div class="icon-wrap">
+      <canvas id="c16" width="16" height="16"></canvas>
+      <div class="label">16×16</div>
+      <button onclick="download('c16','icon-16.png')">Download</button>
+    </div>
+  </div>
+
+  <script>
+    const PRIMARY = '#E60023';
+    const BULB = '#FFD93D';
+    const TEAL = '#00C4CC';
+
+    function drawIcon(canvasId, size) {
+      const canvas = document.getElementById(canvasId);
+      const ctx = canvas.getContext('2d');
+      const s = size;
+      const cx = s / 2;
+
+      // Background circle
+      ctx.beginPath();
+      ctx.arc(cx, cx, cx, 0, Math.PI * 2);
+      ctx.fillStyle = PRIMARY;
+      ctx.fill();
+
+      // Lightbulb body
+      ctx.beginPath();
+      const bx = cx, by = s * 0.43;
+      const bw = s * 0.3, bh = s * 0.3;
+      ctx.ellipse(bx, by, bw, bh, 0, 0, Math.PI * 2);
+      ctx.fillStyle = BULB;
+      ctx.fill();
+
+      // Base
+      if (s >= 48) {
+        ctx.fillStyle = TEAL;
+        ctx.fillRect(cx - s * 0.1, s * 0.62, s * 0.2, s * 0.07);
+        ctx.fillRect(cx - s * 0.08, s * 0.69, s * 0.16, s * 0.05);
+        ctx.fillRect(cx - s * 0.06, s * 0.74, s * 0.12, s * 0.05);
+      } else {
+        ctx.fillStyle = TEAL;
+        ctx.fillRect(cx - 2, s * 0.6, 4, s * 0.18);
+      }
+
+      // Sparkles (only for larger sizes)
+      if (s >= 48) {
+        ctx.fillStyle = 'rgba(255,255,255,0.85)';
+        ctx.font = `${s * 0.12}px serif`;
+        ctx.fillText('✦', s * 0.14, s * 0.28);
+        ctx.font = `${s * 0.09}px serif`;
+        ctx.fillText('✦', s * 0.72, s * 0.35);
+      }
+    }
+
+    drawIcon('c128', 128);
+    drawIcon('c48', 48);
+    drawIcon('c16', 16);
+
+    function download(canvasId, filename) {
+      const canvas = document.getElementById(canvasId);
+      const a = document.createElement('a');
+      a.download = filename;
+      a.href = canvas.toDataURL('image/png');
+      a.click();
+    }
+  </script>
+</body>
+</html>

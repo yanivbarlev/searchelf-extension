@@ -12,8 +12,9 @@ Generate a Chrome MV3 extension that shows a floating tips widget on ONE specifi
 
 ## File Structure
 ```
-{extension-id}/
-  manifest.json
+output/
+  {extension-id}/          ← extension folder (load unpacked for local testing)
+    manifest.json
   config.json
   popup.html
   popup.js
@@ -224,11 +225,30 @@ Generate a `STORE-LISTING.md` file with all Chrome Web Store submission fields:
 
 ## Step 10: Create Zip
 
-Create a zip file at `output/{extension-id}.zip` containing only the extension files (exclude `marketing/` folder and `.svg` source files). Use PowerShell on Windows or `zip` on Mac/Linux.
+**Extension folder location**: Place the extension folder at `output/{extension-id}/` (not the project root). This way both the loadable folder and the zip live together in `output/`.
 
-**CRITICAL**: When using PowerShell `Compress-Archive`, include `imgs` as a whole directory — NOT individual file paths like `imgs/icon-16.png`. Individual paths lose directory structure and icons won't be found at `imgs/icon-*.png` in the zip.
+```
+output/
+  {extension-id}/        ← load this as unpacked in Chrome for local testing
+  {extension-id}.zip     ← upload this to Chrome Web Store
+```
 
-After creating the zip, **always verify** by listing its contents (e.g. `Expand-Archive` to a temp dir and list, or use `7z l`) to confirm `imgs/icon-16.png`, `imgs/icon-48.png`, `imgs/icon-128.png` exist at the correct paths.
+Create the zip at `output/{extension-id}.zip` by compressing the `output/{extension-id}/` folder directly. This makes the zip extract to a named subfolder, so the user can extract and immediately load it as an unpacked extension.
+
+**CRITICAL**: Pass the full `output/{extension-id}` directory path to `Compress-Archive` (not individual files inside it). This preserves directory structure AND wraps everything in the named folder.
+
+```powershell
+$base = "C:\...\output\{extension-id}"
+$out  = "C:\...\output\{extension-id}.zip"
+if (Test-Path $out) { Remove-Item $out }
+Compress-Archive -Path $base -DestinationPath $out
+```
+
+After creating the zip, **always verify** by listing its contents (extract to a temp dir) to confirm:
+- `{extension-id}/manifest.json`
+- `{extension-id}/imgs/icon-16.png`
+- `{extension-id}/imgs/icon-48.png`
+- `{extension-id}/imgs/icon-128.png`
 
 ## Verification Checklist
 - [ ] Extension loads in chrome://extensions without errors

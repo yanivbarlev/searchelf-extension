@@ -2,6 +2,16 @@
 
 <!-- Add new entries at the top. See LESSONS-PROCESS.md for format. -->
 
+## Tips for Pinterest — 2026-02-23
+
+**Build issues:**
+- Extension folder was placed at the project root instead of inside `output/`. Both the folder and zip should live in `output/` so local testing and store upload are in the same place.
+- Zip was initially created from individual file paths, which excluded the top-level folder name. Must compress the whole `output/{extension-id}/` directory so the zip extracts to a named folder the user can load directly as an unpacked extension.
+
+**Applied to recipe:** 2026-02-23 — updated RECIPE.md Step 10 and file structure diagram.
+
+---
+
 ## Tips for Google Sheets — 2026-02-23
 
 **Store issues:**
