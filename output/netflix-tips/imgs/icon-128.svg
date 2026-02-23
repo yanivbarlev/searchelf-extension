@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E50914"/>
+      <stop offset="100%" stop-color="#831010"/>
+    </linearGradient>
+    <linearGradient id="bulbGlow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFF3B0"/>
+      <stop offset="100%" stop-color="#FFD93D"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="128" height="128" rx="28" fill="url(#bg)"/>
+
+  <!-- Subtle film strip left -->
+  <rect x="8" y="0" width="12" height="128" rx="2" fill="white" opacity="0.06"/>
+  <rect x="10" y="6" width="8" height="5" rx="1" fill="url(#bg)" opacity="0.5"/>
+  <rect x="10" y="16" width="8" height="5" rx="1" fill="url(#bg)" opacity="0.5"/>
+  <rect x="10" y="26" width="8" height="5" rx="1" fill="url(#bg)" opacity="0.5"/>
+  <rect x="10" y="36" width="8" height="5" rx="1" fill="url(#bg)" opacity="0.5"/>
+  <rect x="10" y="46" width="8" height="5" rx="1" fill="url(#bg)" opacity="0.5"/>
+  <rect x="10" y="56" width="8" height="5" rx="1" fill="url(#bg)" opacity="0.5"/>
+  <rect x="10" y="66" width="8" height="5" rx="1" fill="url(#bg)" opacity="0.5"/>
+  <rect x="10" y="76" width="8" height="5" rx="1" fill="url(#bg)" opacity="0.5"/>
+  <rect x="10" y="86" width="8" height="5" rx="1" fill="url(#bg)" opacity="0.5"/>
+  <rect x="10" y="96" width="8" height="5" rx="1" fill="url(#bg)" opacity="0.5"/>
+  <rect x="10" y="106" width="8" height="5" rx="1" fill="url(#bg)" opacity="0.5"/>
+  <rect x="10" y="116" width="8" height="5" rx="1" fill="url(#bg)" opacity="0.5"/>
+
+  <!-- Subtle film strip right -->
+  <rect x="108" y="0" width="12" height="128" rx="2" fill="white" opacity="0.06"/>
+  <rect x="110" y="6" width="8" height="5" rx="1" fill="url(#bg)" opacity="0.5"/>
+  <rect x="110" y="16" width="8" height="5" rx="1" fill="url(#bg)" opacity="0.5"/>
+  <rect x="110" y="26" width="8" height="5" rx="1" fill="url(#bg)" opacity="0.5"/>
+  <rect x="110" y="36" width="8" height="5" rx="1" fill="url(#bg)" opacity="0.5"/>
+  <rect x="110" y="46" width="8" height="5" rx="1" fill="url(#bg)" opacity="0.5"/>
+  <rect x="110" y="56" width="8" height="5" rx="1" fill="url(#bg)" opacity="0.5"/>
+  <rect x="110" y="66" width="8" height="5" rx="1" fill="url(#bg)" opacity="0.5"/>
+  <rect x="110" y="76" width="8" height="5" rx="1" fill="url(#bg)" opacity="0.5"/>
+  <rect x="110" y="86" width="8" height="5" rx="1" fill="url(#bg)" opacity="0.5"/>
+  <rect x="110" y="96" width="8" height="5" rx="1" fill="url(#bg)" opacity="0.5"/>
+  <rect x="110" y="106" width="8" height="5" rx="1" fill="url(#bg)" opacity="0.5"/>
+  <rect x="110" y="116" width="8" height="5" rx="1" fill="url(#bg)" opacity="0.5"/>
+
+  <!-- Lightbulb glow aura -->
+  <ellipse cx="64" cy="52" rx="28" ry="30" fill="#FFD93D" opacity="0.15" filter="url(#glow)"/>
+
+  <!-- Lightbulb body -->
+  <ellipse cx="64" cy="50" rx="22" ry="24" fill="url(#bulbGlow)"/>
+
+  <!-- Filament lines -->
+  <path d="M58 44 Q60 54 56 62" stroke="#E5A800" stroke-width="1.5" fill="none" opacity="0.5"/>
+  <path d="M64 42 Q64 54 64 62" stroke="#E5A800" stroke-width="1.5" fill="none" opacity="0.5"/>
+  <path d="M70 44 Q68 54 72 62" stroke="#E5A800" stroke-width="1.5" fill="none" opacity="0.5"/>
+
+  <!-- Lightbulb screw base -->
+  <rect x="54" y="72" width="20" height="6" rx="3" fill="#E0E0E0"/>
+  <rect x="56" y="78" width="16" height="5" rx="2.5" fill="#CCCCCC"/>
+  <rect x="58" y="83" width="12" height="4" rx="2" fill="#B8B8B8"/>
+  <path d="M60 87 Q64 92 68 87" stroke="#A0A0A0" stroke-width="1.5" fill="none"/>
+
+  <!-- Sparkle top-right -->
+  <g transform="translate(90,22)" fill="white">
+    <path d="M0,-8 L1.5,-2 L8,0 L1.5,2 L0,8 L-1.5,2 L-8,0 L-1.5,-2 Z" opacity="0.9"/>
+  </g>
+
+  <!-- Sparkle top-left -->
+  <g transform="translate(34,28) scale(0.6)" fill="white">
+    <path d="M0,-8 L1.5,-2 L8,0 L1.5,2 L0,8 L-1.5,2 L-8,0 L-1.5,-2 Z" opacity="0.7"/>
+  </g>
+
+  <!-- Sparkle mid-right -->
+  <g transform="translate(98,56) scale(0.45)" fill="white">
+    <path d="M0,-8 L1.5,-2 L8,0 L1.5,2 L0,8 L-1.5,2 L-8,0 L-1.5,-2 Z" opacity="0.6"/>
+  </g>
+
+  <!-- Small dot sparkles -->
+  <circle cx="28" cy="48" r="2" fill="white" opacity="0.5"/>
+  <circle cx="96" cy="72" r="1.5" fill="white" opacity="0.4"/>
+  <circle cx="38" cy="80" r="1.5" fill="white" opacity="0.35"/>
+</svg>

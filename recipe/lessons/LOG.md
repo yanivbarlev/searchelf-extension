@@ -2,6 +2,16 @@
 
 <!-- Add new entries at the top. See LESSONS-PROCESS.md for format. -->
 
+## Tips for Netflix — 2026-02-23
+
+**Build issues:**
+- Marketing slide PNGs (slide1.png, slide2.png) were not rendered — only the HTML files were created. The Puppeteer render step was skipped, leaving no actual screenshots for Chrome Web Store upload.
+- Icons used a generic lightbulb-on-circle design with no visual connection to the product. Icons should be sophisticated with product-relevant decorative elements (e.g., film strips for Netflix).
+
+**Applied to recipe:** 2026-02-23 — updated RECIPE.md Step 7 to mark PNG rendering as MANDATORY with verification step, and Step 8 to require product-relevant icon design with detailed design spec.
+
+---
+
 ## Tips for Pinterest — 2026-02-23
 
 **Build issues:**

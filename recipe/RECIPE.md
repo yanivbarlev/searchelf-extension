@@ -80,7 +80,7 @@ output/
   "version": "1.0.0",
   "primaryColor": "{PRIMARY_COLOR}",
   "accentColor": "{ACCENT_COLOR}",
-  "widgetLabel": "{WIDGET_LABEL}",
+  "widgetLabel": "{WIDGET_LABEL}",  // Reflect the keyword angle, not always "Tips". E.g., "Bet Finder", "Filter Tips", "Background Tools"
   "widgetEmoji": "{WIDGET_EMOJI}",
   "targetHostname": "{HOSTNAME}"
 }
@@ -165,7 +165,7 @@ Create two HTML files in `marketing/` for Chrome Web Store screenshots.
 
 **slide1.html** — Hero screenshot:
 - 1280x800 viewport, purple/themed gradient background
-- Left side: big headline "Smart Tips for {SITE}" + subtitle about tip count
+- Left side: big headline leading with the target keyword outcome (e.g., "Find Sure Bets on Polymarket", "Master Gmail Filters", "Smart Tips for {SITE}" for general keywords) + subtitle about tip count
 - Right side: mockup of the tips widget with a sample tip
 - Use site's primaryColor for gradient
 
@@ -178,7 +178,7 @@ Create two HTML files in `marketing/` for Chrome Web Store screenshots.
 
 Both slides use `body { width: 1280px; height: 800px; overflow: hidden; }` so they render at exact Chrome Web Store dimensions.
 
-**Render slides to PNG** — after creating the HTML slides, use Puppeteer to capture 1280x800 PNGs:
+**Render slides to PNG (MANDATORY)** — after creating the HTML slides, ALWAYS use Puppeteer to capture 1280x800 PNGs and place them in `marketing/`. Do NOT skip this step — the PNGs are the actual Chrome Web Store screenshots.
 ```js
 // Run from project root (where puppeteer is installed)
 const puppeteer = require('puppeteer');
@@ -187,25 +187,30 @@ const puppeteer = require('puppeteer');
   const page = await browser.newPage();
   await page.setViewport({ width: 1280, height: 800 });
   await page.goto('file:///ABSOLUTE_PATH/marketing/slide1.html', { waitUntil: 'networkidle0' });
-  await page.screenshot({ path: 'marketing/slide1.png' });
+  await page.screenshot({ path: 'ABSOLUTE_PATH/marketing/slide1.png' });
   await page.goto('file:///ABSOLUTE_PATH/marketing/slide2.html', { waitUntil: 'networkidle0' });
-  await page.screenshot({ path: 'marketing/slide2.png' });
+  await page.screenshot({ path: 'ABSOLUTE_PATH/marketing/slide2.png' });
   await browser.close();
 })();
 ```
-This produces pixel-perfect 1280x800 PNGs ready for Chrome Web Store upload. Install puppeteer once at the repo root with `npm install puppeteer` if not already present.
+This produces pixel-perfect 1280x800 PNGs ready for Chrome Web Store upload. Install puppeteer once at the repo root with `npm install puppeteer` if not already present. **Verify both slide1.png and slide2.png exist in marketing/ before considering this step done.**
 
 ## Step 8: SVG Icons
 
-Create SVG icons at 16/48/128px with a themed design:
-- Purple gradient circle background (or site's primaryColor)
-- Centered lightbulb shape (yellow #FFD93D body, teal #00C4CC base)
-- White sparkle decorations
-- All three SVGs share the same inner `<g>` design, just with different `transform scale()`
+Create SVG icons at 16/48/128px with a **sophisticated, product-relevant** design. Do NOT use a generic lightbulb-on-circle — make the icon visually distinctive and tied to the target site/tool.
+
+**Design requirements:**
+- **Rounded rectangle** background (rx="28" on 128 viewBox) with a gradient using the site's primaryColor
+- **Lightbulb** as the central element with a warm gradient fill (#FFF3B0 to #FFD93D) and realistic screw base in silver/grey tones
+- **Product-relevant decorative elements** — e.g., film strip borders for Netflix, pin shapes for Pinterest, grid lines for Sheets. These should be subtle (low opacity) so they don't overwhelm the lightbulb
+- **Diamond-shaped sparkles** using SVG `<path>` (4-point stars), NOT text characters like ✦
+- **Size-adaptive detail** — 16px gets simplified (fewer elements), 48px moderate detail, 128px full detail (filament lines, glow filters, extra sparkles)
+- All three SVGs share the same viewBox="0 0 128 128" with different width/height attributes
+- Use `<defs>` for gradients and filters to keep SVGs clean
 
 Convert SVGs to PNGs: `npx sharp-cli -i icon-{size}.svg -o icon-{size}.png -- resize {size} {size}`
 
-Also create `marketing/render-icons.html` — a canvas-based renderer that draws the icons and has download buttons (useful if sharp-cli is unavailable).
+Also create `marketing/render-icons.html` — a canvas-based renderer that approximates the icon design with download buttons (useful if sharp-cli is unavailable).
 
 ## Step 9: STORE-LISTING.md
 
@@ -213,7 +218,7 @@ Generate a `STORE-LISTING.md` file with all Chrome Web Store submission fields:
 
 - **Name**: from manifest
 - **Summary**: from manifest description (132 chars max)
-- **Description**: detailed store description with sections: WHAT YOU GET, KEYBOARD SHORTCUTS, HIDDEN FEATURES, WHY THIS EXTENSION
+- **Description**: detailed store description with sections matching the target keyword (not hardcoded "KEYBOARD SHORTCUTS, HIDDEN FEATURES"). Section headers should use keyword-relevant language. Reinforce the target keyword naturally 3-5 times in the description. E.g., for "polymarket sure bet finder": WHAT YOU GET, FINDING SURE BETS, ODDS ANALYSIS TIPS, WHY THIS EXTENSION
 - **Category**: Productivity
 - **Permission justifications**:
   - `storage` → "Stores user preferences such as dismissed tip state and last viewed tip index. No personal data is collected or transmitted."

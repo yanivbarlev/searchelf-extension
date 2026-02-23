@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E50914"/>
+      <stop offset="100%" stop-color="#831010"/>
+    </linearGradient>
+    <linearGradient id="bulbGlow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFF3B0"/>
+      <stop offset="100%" stop-color="#FFD93D"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="128" height="128" rx="28" fill="url(#bg)"/>
+
+  <!-- Lightbulb simplified for 16px -->
+  <ellipse cx="64" cy="50" rx="24" ry="26" fill="url(#bulbGlow)"/>
+  <rect x="52" y="74" width="24" height="8" rx="4" fill="#E0E0E0"/>
+  <rect x="56" y="82" width="16" height="6" rx="3" fill="#CCCCCC"/>
+
+  <!-- Single sparkle -->
+  <g transform="translate(92,22)" fill="white">
+    <path d="M0,-8 L1.5,-2 L8,0 L1.5,2 L0,8 L-1.5,2 L-8,0 L-1.5,-2 Z" opacity="0.9"/>
+  </g>
+</svg>

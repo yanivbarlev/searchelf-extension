@@ -1,5 +1,16 @@
 # Tips Writing Guide
 
+## Keyword Slanting
+
+When the extension targets a specific keyword (not generic "{tool} tips"), the tip distribution must be SLANTED toward that keyword:
+
+| Targeting | Keyword tips (A) | Related site tips (B) | Browser tips (C) | General tips (D) |
+|-----------|------------------|-----------------------|-------------------|-------------------|
+| Specific keyword (feature/outcome/problem) | 20 | 15 | 10 | 5 |
+| General keyword ("{tool} tips") | 15 | 15 | 10 | 10 |
+
+Example: If keyword is "polymarket sure bet finder", 20 of 50 tips are specifically about identifying value bets, arbitrage, odds analysis, etc.
+
 ## Rules
 
 1. **50 tips per extension** — 5 random shown per session
@@ -9,13 +20,16 @@
 
 ## Tip Categories (aim for a mix)
 
-### A. Site-specific (only if verified true) — target ~15 tips
-- Real features of the site (search, filters, settings)
+### A. Target keyword tips (only if verified true) — see slanting table above
+- Tips that directly address whatever the target keyword promises
+- For general keywords: real features of the site (search, filters, settings)
+- For specific keywords: tips laser-focused on the keyword topic
 - Real keyboard shortcuts (only well-documented ones)
 - URL patterns that actually work (e.g. `site.com/search?q=`)
 - Account features users might not know about
 
-### B. Browser features useful on this type of site — target ~15 tips
+### B. Related site tips — see slanting table above
+- Browser features useful on this type of site
 - Ctrl+F for finding text on long pages
 - Ctrl+D for bookmarking
 - Ctrl+P for printing/PDF
@@ -23,13 +37,13 @@
 - Translate for foreign language sites
 - Zoom for small-text sites
 
-### C. Category-specific productivity tips — target ~10 tips
+### C. Category-specific productivity tips — see slanting table above
 - For news sites: RSS feeds, newsletter tips, ad-free reading
 - For shopping sites: price tracking, coupon extensions, compare tabs
 - For gaming sites: wiki resources, community links, settings optimization
 - For social media: privacy settings, download tricks, notification management
 
-### D. General power-user tips — target ~10 tips
+### D. General power-user tips — see slanting table above
 - Tab management (groups, pinning, search)
 - Screenshot tools
 - Dark mode

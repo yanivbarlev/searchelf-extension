@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 1280px;
+      height: 800px;
+      overflow: hidden;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: linear-gradient(135deg, #E50914 0%, #B81D24 50%, #5C0A0E 100%);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 60px 80px;
+    }
+    .left {
+      flex: 1;
+      color: white;
+      max-width: 520px;
+    }
+    .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.2);
+      border: 1px solid rgba(255,255,255,0.4);
+      color: white;
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      margin-bottom: 28px;
+    }
+    h1 {
+      font-size: 56px;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      letter-spacing: -1px;
+    }
+    h1 span { color: #FFD93D; }
+    .subtitle {
+      font-size: 20px;
+      opacity: 0.9;
+      line-height: 1.5;
+      margin-bottom: 36px;
+    }
+    .stats {
+      display: flex;
+      gap: 32px;
+    }
+    .stat-num {
+      font-size: 36px;
+      font-weight: 800;
+      color: #FFD93D;
+    }
+    .stat-label {
+      font-size: 13px;
+      opacity: 0.8;
+      margin-top: 2px;
+    }
+    .right {
+      flex: 0 0 380px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .widget-mockup {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.4);
+      overflow: hidden;
+      width: 340px;
+    }
+    .widget-header {
+      background: #E50914;
+      padding: 14px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .widget-header-title { color: white; font-weight: 700; font-size: 15px; }
+    .widget-header-x { color: rgba(255,255,255,0.7); font-size: 20px; }
+    .widget-body { padding: 20px 16px; }
+    .tip-num { font-size: 12px; color: #B81D24; font-weight: 600; margin-bottom: 8px; }
+    .tip-title { font-size: 16px; font-weight: 700; color: #1a1a2e; margin-bottom: 8px; }
+    .tip-desc { font-size: 13px; color: #555; line-height: 1.6; }
+    .widget-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 16px;
+      border-top: 1px solid #eee;
+    }
+    .nav-btn {
+      background: #E50914;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 6px 14px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .nav-btn.disabled { opacity: 0.4; }
+    .nav-count { font-size: 12px; color: #999; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <div class="left">
+    <div class="badge">🎬 Free Chrome Extension</div>
+    <h1>Master <span>Netflix</span><br>Like a Pro</h1>
+    <p class="subtitle">50 tricks and hidden features delivered as a<br>floating widget — right where you need them.</p>
+    <div class="stats">
+      <div>
+        <div class="stat-num">50+</div>
+        <div class="stat-label">Curated Tips</div>
+      </div>
+      <div>
+        <div class="stat-num">Free</div>
+        <div class="stat-label">No Sign-up</div>
+      </div>
+      <div>
+        <div class="stat-num">0ms</div>
+        <div class="stat-label">Load Time</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="right">
+    <div class="widget-mockup">
+      <div class="widget-header">
+        <span class="widget-header-title">✨ Tips for Netflix</span>
+        <span class="widget-header-x">×</span>
+      </div>
+      <div class="widget-body">
+        <div class="tip-num">💡 Tip 1 of 5</div>
+        <div class="tip-title">Secret Genre Codes</div>
+        <div class="tip-desc">Type netflix.com/browse/genre/XXXX with a code number to access hidden genre categories. For example, 11804 for Bollywood, 1365 for Action Comedies.</div>
+      </div>
+      <div class="widget-nav">
+        <button class="nav-btn disabled">← Prev</button>
+        <span class="nav-count">1 / 5</span>
+        <button class="nav-btn">Next →</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

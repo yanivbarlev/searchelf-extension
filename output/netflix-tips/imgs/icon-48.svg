@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E50914"/>
+      <stop offset="100%" stop-color="#831010"/>
+    </linearGradient>
+    <linearGradient id="bulbGlow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFF3B0"/>
+      <stop offset="100%" stop-color="#FFD93D"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="128" height="128" rx="28" fill="url(#bg)"/>
+
+  <!-- Film strips simplified -->
+  <rect x="8" y="0" width="12" height="128" rx="2" fill="white" opacity="0.06"/>
+  <rect x="108" y="0" width="12" height="128" rx="2" fill="white" opacity="0.06"/>
+
+  <!-- Lightbulb -->
+  <ellipse cx="64" cy="50" rx="22" ry="24" fill="url(#bulbGlow)"/>
+
+  <!-- Screw base -->
+  <rect x="54" y="72" width="20" height="6" rx="3" fill="#E0E0E0"/>
+  <rect x="56" y="78" width="16" height="5" rx="2.5" fill="#CCCCCC"/>
+  <rect x="58" y="83" width="12" height="4" rx="2" fill="#B8B8B8"/>
+
+  <!-- Sparkles -->
+  <g transform="translate(90,22)" fill="white">
+    <path d="M0,-8 L1.5,-2 L8,0 L1.5,2 L0,8 L-1.5,2 L-8,0 L-1.5,-2 Z" opacity="0.9"/>
+  </g>
+  <g transform="translate(34,28) scale(0.6)" fill="white">
+    <path d="M0,-8 L1.5,-2 L8,0 L1.5,2 L0,8 L-1.5,2 L-8,0 L-1.5,-2 Z" opacity="0.7"/>
+  </g>
+  <circle cx="28" cy="48" r="2" fill="white" opacity="0.5"/>
+</svg>

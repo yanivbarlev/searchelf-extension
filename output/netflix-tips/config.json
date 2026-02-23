@@ -1,0 +1,10 @@
+{
+  "name": "Tips for Netflix",
+  "description": "50 Netflix tricks, hidden features & shortcuts to enhance your streaming.",
+  "version": "1.0.0",
+  "primaryColor": "#E50914",
+  "accentColor": "#B81D24",
+  "widgetLabel": "Tips",
+  "widgetEmoji": "\uD83C\uDFAC",
+  "targetHostname": "netflix.com"
+}
