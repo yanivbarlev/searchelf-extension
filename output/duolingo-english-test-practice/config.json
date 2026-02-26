@@ -1,0 +1,10 @@
+{
+  "name": "Duolingo English Test Practice Coach",
+  "description": "Prepare smarter on Duolingo.com with 50 practical Duolingo English Test practice tips for setup, speaking, writing, and timing.",
+  "version": "1.0.0",
+  "primaryColor": "#58CC02",
+  "accentColor": "#1CB0F6",
+  "widgetLabel": "DET Practice",
+  "widgetEmoji": "\ud83c\udfaf",
+  "targetHostname": "duolingo.com"
+}

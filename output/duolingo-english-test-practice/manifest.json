@@ -1,0 +1,33 @@
+{
+  "manifest_version": 3,
+  "name": "Duolingo English Test Practice Coach",
+  "version": "1.0.0",
+  "description": "Prepare smarter on Duolingo.com with 50 practical Duolingo English Test practice tips for setup, speaking, writing, and timing.",
+  "permissions": ["storage"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "imgs/icon-16.png",
+      "48": "imgs/icon-48.png",
+      "128": "imgs/icon-128.png"
+    }
+  },
+  "icons": {
+    "16": "imgs/icon-16.png",
+    "48": "imgs/icon-48.png",
+    "128": "imgs/icon-128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.duolingo.com/*"],
+      "js": ["js/cs.js"],
+      "run_at": "document_end"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["config.json", "css/widget.css"],
+      "matches": ["*://*.duolingo.com/*"]
+    }
+  ]
+}

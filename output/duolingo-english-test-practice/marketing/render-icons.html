@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Render Icons</title>
+  <style>
+    body { font-family: "Segoe UI", Arial, sans-serif; padding: 20px; background: #f6f8fb; color: #1f2937; }
+    .row { display: flex; gap: 16px; align-items: center; margin: 12px 0; }
+    .btn { padding: 8px 12px; border: 0; background: #58CC02; color: #fff; border-radius: 8px; cursor: pointer; }
+    canvas { border: 1px solid #d1d5db; background: #fff; border-radius: 10px; image-rendering: pixelated; }
+  </style>
+</head>
+<body>
+  <h1>Duolingo DET Icon Renderer</h1>
+  <div class="row"><canvas id="c16" width="16" height="16"></canvas><button class="btn" onclick="downloadIcon(16)">Download 16</button></div>
+  <div class="row"><canvas id="c48" width="48" height="48"></canvas><button class="btn" onclick="downloadIcon(48)">Download 48</button></div>
+  <div class="row"><canvas id="c128" width="128" height="128"></canvas><button class="btn" onclick="downloadIcon(128)">Download 128</button></div>
+  <script>
+    function roundRect(ctx, x, y, w, h, r) {
+      ctx.beginPath();
+      ctx.moveTo(x + r, y);
+      ctx.lineTo(x + w - r, y);
+      ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+      ctx.lineTo(x + w, y + h - r);
+      ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+      ctx.lineTo(x + r, y + h);
+      ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+      ctx.lineTo(x, y + r);
+      ctx.quadraticCurveTo(x, y, x + r, y);
+      ctx.closePath();
+    }
+
+    function draw(size) {
+      const c = document.getElementById("c" + size);
+      const x = c.getContext("2d");
+      x.clearRect(0, 0, size, size);
+
+      const grad = x.createLinearGradient(0, 0, size, size);
+      grad.addColorStop(0, "#58CC02");
+      grad.addColorStop(1, "#1CB0F6");
+      x.fillStyle = grad;
+      roundRect(x, size * 0.06, size * 0.06, size * 0.88, size * 0.88, size * 0.22);
+      x.fill();
+
+      x.fillStyle = "rgba(255,255,255,0.20)";
+      x.beginPath(); x.arc(size * 0.34, size * 0.32, size * 0.08, 0, Math.PI * 2); x.fill();
+      x.beginPath(); x.arc(size * 0.66, size * 0.32, size * 0.08, 0, Math.PI * 2); x.fill();
+
+      const bulb = x.createLinearGradient(0, size * 0.25, 0, size * 0.73);
+      bulb.addColorStop(0, "#FFF3B0");
+      bulb.addColorStop(1, "#FFD93D");
+      x.fillStyle = bulb;
+      x.beginPath();
+      x.arc(size * 0.5, size * 0.5, size * 0.2, Math.PI * 0.95, Math.PI * 0.05, false);
+      x.lineTo(size * 0.66, size * 0.57);
+      x.arc(size * 0.5, size * 0.57, size * 0.16, 0, Math.PI, true);
+      x.closePath();
+      x.fill();
+
+      x.fillStyle = "#bfc7d4";
+      x.fillRect(size * 0.43, size * 0.66, size * 0.14, size * 0.06);
+      x.fillRect(size * 0.44, size * 0.73, size * 0.12, size * 0.05);
+
+      x.fillStyle = "#fff";
+      [[0.24, 0.21], [0.76, 0.25], [0.2, 0.72], [0.79, 0.68]].forEach(([sx, sy]) => {
+        x.save();
+        x.translate(size * sx, size * sy);
+        x.rotate(Math.PI / 4);
+        x.fillRect(-size * 0.015, -size * 0.015, size * 0.03, size * 0.03);
+        x.restore();
+      });
+    }
+
+    [16, 48, 128].forEach(draw);
+
+    function downloadIcon(size) {
+      const c = document.getElementById("c" + size);
+      const a = document.createElement("a");
+      a.download = `icon-${size}.png`;
+      a.href = c.toDataURL("image/png");
+      a.click();
+    }
+  </script>
+</body>
+</html>

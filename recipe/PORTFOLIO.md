@@ -6,6 +6,7 @@ Track every extension we build or target. Check this before ideating to ensure m
 
 | # | Extension Name | Target Keyword | Keyword Category | Category | Tool/Site | Date | Status |
 |---|---------------|----------------|-----------------|----------|-----------|------|--------|
+| 5 | Duolingo English Test Practice Coach | duolingo english test practice | problem/outcome | Education/Test Prep | duolingo.com | 2026-02 | Built |
 | 4 | Tips for Netflix - Tricks & Hidden Features | netflix tips | general | Entertainment | netflix.com | 2026-02 | Built |
 | 3 | Tips for Pinterest - Tricks & Hidden Features | pinterest tricks | general | Social/Discovery | pinterest.com | 2026-02 | Built |
 | 2 | Tips for Google Sheets - Tricks & Hidden Features | google sheets tricks | general | Spreadsheets | docs.google.com | 2026-02 | Built |
